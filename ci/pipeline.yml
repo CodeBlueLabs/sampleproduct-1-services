@@ -56,8 +56,8 @@ jobs:
   - get: sampleproduct-1-services
     passed: ['Unit Test']
     trigger: true
-  - task: build
-    file: sampleproduct-1-services/ci/build.yml
+  - task: buildanddeploy
+    file: sampleproduct-1-services/ci/test.yml
   - put: deployapp
     params:
       manifest: sampleproduct-1-services/manifest.yml
@@ -73,24 +73,3 @@ jobs:
         channel: ((slack.channel))
         text: |
           *Build* failed, check the build log for details
-- name: Deploy
-  serial: true
-  plan:
-  - get: sampleproduct-1-services
-    passed: ['Build']
-    trigger: true
-  - put: deployapp
-    params:
-      manifest: sampleproduct-1-services/manifest.yml
-    on_success:
-      put: im-notify
-      params:
-        channel: ((slack.channel))
-        text: |
-          *Deploy* completed successfully
-    on_failure:
-      put: im-notify
-      params:
-        channel: ((slack.channel))
-        text: |
-          *Deploy* failed, check the build log for details
