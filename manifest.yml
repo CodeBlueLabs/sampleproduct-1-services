@@ -1,0 +1,10 @@
+---
+memory: 2G
+instances: 1
+timeout: 120
+disk_quota: 4096MB
+
+applications:
+  - name: sampleproduct1_ws
+    path: target/sampleproduct-1-services-1-0.0.1.war
+    buildpack: java_buildpack

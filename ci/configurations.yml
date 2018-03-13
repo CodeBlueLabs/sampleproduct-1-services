@@ -1,0 +1,22 @@
+bitbucket:
+  name: https://github.com/onedigitaladmin/PAL-Immersion-Services.git
+  username: OneDigitalAdmin
+  password: pass1234
+  branch: master
+
+pws:
+  url: https://api.run.pivotal.io
+  username: onedigitaladmin@cognizant.com
+  password: Pass123$
+  organization: Autoloan
+  space: PALImmersion
+  webappurl: https://palimmersionapp.cfapps.io/
+slack:
+  repository: cfcommunity/slack-notification-resource
+  tag: latest
+  url: https://hooks.slack.com/services/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
+  channel: "#buildroom"
+domain:
+  name: pcfalm.agileinteractivelab.com
+app:
+  url: https://onedigital.cognizant.com/codeblue
