@@ -6,7 +6,7 @@ image_resource:
   source: {repository: java, tag: openjdk-8}
 
 inputs:
-  - name: PAL-Immersion-Services
+  - name: sampleproduct-1-services
 
 run:
   path: bash
@@ -14,7 +14,7 @@ run:
     - -exc
     - |
       echo $(pwd)
-      cd PAL-Immersion-Services
+      cd sampleproduct-1-services
       echo $(pwd)
       chmod 775 mvnw
       ./mvnw clean compile

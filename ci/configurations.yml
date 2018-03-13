@@ -1,5 +1,5 @@
 bitbucket:
-  name: https://github.com/onedigitaladmin/PAL-Immersion-Services.git
+  name: https://github.com/onedigitaladmin/sampleproduct-1-services.git
   username: OneDigitalAdmin
   password: pass1234
   branch: master

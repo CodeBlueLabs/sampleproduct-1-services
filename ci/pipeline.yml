@@ -6,10 +6,10 @@ resource_types:
     tag: ((slack.tag))
 
 resources:
-- name: PAL-Immersion-Services
+- name: sampleproduct-1-services
   type: git
   source:
-    uri: https://github.com/onedigitaladmin/PAL-Immersion-Services.git
+    uri: https://github.com/onedigitaladmin/sampleproduct-1-services.git
     branch: master
     username: OneDigitalAdmin
     password: pass1234
@@ -30,33 +30,14 @@ resources:
     skip_cert_check: false
 
 jobs:
-- name: Compile
-  public: true
-  plan:
-  - get: PAL-Immersion-Services
-    trigger: true
-  - task: compile
-    file: PAL-Immersion-Services/ci/compile.yml
-    on_success:
-      put: im-notify
-      params:
-        channel: ((slack.channel))
-        text: |
-         *Code Compile* completed successfully without any issues
-    on_failure:
-      put: im-notify
-      params:
-        channel: ((slack.channel))
-        text: |
-         *Code Compile* failed with *compilation error(s)*, check the build log for details
+
 - name: Unit Test
   serial: true
   plan:
-  - get: PAL-Immersion-Services
-    passed: ['Compile']
+  - get: sampleproduct-1-services
     trigger: true
   - task: unittest
-    file: PAL-Immersion-Services/ci/test.yml
+    file: sampleproduct-1-services/ci/test.yml
     on_success:
       put: im-notify
       params:
@@ -69,14 +50,17 @@ jobs:
         channel: ((slack.channel))
         text: |
           *Unit Test* failed with test case failures, check the build log for details
-- name: Build
+- name: Build and Deploy
   serial: true
   plan:
-  - get: PAL-Immersion-Services
+  - get: sampleproduct-1-services
     passed: ['Unit Test']
     trigger: true
   - task: build
-    file: PAL-Immersion-Services/ci/build.yml
+    file: sampleproduct-1-services/ci/build.yml
+  - put: deployapp
+    params:
+      manifest: sampleproduct-1-services/manifest.yml
     on_success:
       put: im-notify
       params:
@@ -92,12 +76,12 @@ jobs:
 - name: Deploy
   serial: true
   plan:
-  - get: PAL-Immersion-Services
+  - get: sampleproduct-1-services
     passed: ['Build']
     trigger: true
   - put: deployapp
     params:
-      manifest: PAL-Immersion-Services/manifest.yml
+      manifest: sampleproduct-1-services/manifest.yml
     on_success:
       put: im-notify
       params:
