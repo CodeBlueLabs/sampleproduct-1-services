@@ -17,4 +17,4 @@ run:
       cd sampleproduct-1-services
       echo $(pwd)
       chmod 775 mvnw
-      ./mvnw clean package
+      ./mvnw clean package install

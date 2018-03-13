@@ -9,7 +9,7 @@ resources:
 - name: sampleproduct-1-services
   type: git
   source:
-    uri: https://github.com/onedigitaladmin/sampleproduct-1-services.git
+    uri: https://github.com/CodeBlueLabs/sampleproduct-1-services.git
     branch: master
     username: OneDigitalAdmin
     password: pass1234

@@ -1,5 +1,5 @@
 bitbucket:
-  name: https://github.com/onedigitaladmin/sampleproduct-1-services.git
+  name: https://github.com/CodeBlueLabs/sampleproduct-1-services.git
   username: OneDigitalAdmin
   password: pass1234
   branch: master
