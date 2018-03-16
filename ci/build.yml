@@ -7,6 +7,8 @@ image_resource:
 
 inputs:
   - name: sampleproduct-1-services
+outputs:
+  - name: build-output
 
 run:
   path: bash
@@ -14,7 +16,12 @@ run:
     - -exc
     - |
       echo $(pwd)
-      cd sampleproduct-1-services
-      echo $(pwd)
-      chmod 775 mvnw
-      ./mvnw clean package install
+            cd sampleproduct-1-services
+            echo $(pwd)
+            chmod 775 mvnw
+            ./mvnw -DskipTests=true package
+            ls
+            ls target
+            cp manifest.yml ../build-output
+            cp target/sampleproduct-1-services-0.0.1.war ../build-output
+            ls ../build-output

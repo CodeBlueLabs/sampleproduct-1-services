@@ -12,6 +12,6 @@ public class WelcomeController {
 	
 	@RequestMapping(value = "/api/welcome", method = RequestMethod.GET)
 	public String welcomeToPALImmersion(){
-		return "Welcome to CodeBlue Immersion Lab !!";
+		return "Welcome to CodeBlue Immersion Lab.";
 	}
 }
