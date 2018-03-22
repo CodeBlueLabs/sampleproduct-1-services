@@ -19,7 +19,7 @@ run:
             cd sampleproduct-1-services
             echo $(pwd)
             chmod 775 mvnw
-            ./mvnw package
+            ./mvnw -DskipTests=true package
             ls
             ls target
             cp target/sampleproduct-1-services-1-0.0.1.war ../build-output
