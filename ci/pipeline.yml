@@ -78,7 +78,7 @@ jobs:
     passed: ['Acceptance Test']
     trigger: true
   - task: buildanddeploy
-    file: sampleproduct-1-services/ci/test.yml
+    file: sampleproduct-1-services/ci/build.yml
   - put: deployapp
     params:
       manifest: sampleproduct-1-services/manifest.yml
