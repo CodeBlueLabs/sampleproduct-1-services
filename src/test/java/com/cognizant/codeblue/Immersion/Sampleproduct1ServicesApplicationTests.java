@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class Sampleproduct1ServicesApplicationTests {
 
 	String message = "Welcome to CodeBlue Immersion Lab.";
-	// MessageUtil messageUtil = new MessageUtil(message);
+	
 
 	@Test
 	public void welcomeToPALImmersion() {
