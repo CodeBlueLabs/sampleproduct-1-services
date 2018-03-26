@@ -13,6 +13,7 @@ run:
   args:
     - -exc
     - |
+      export TERM=${TERM:-dumb}
       echo $(pwd)
       cd sampleproduct-1-services
       echo $(pwd)
