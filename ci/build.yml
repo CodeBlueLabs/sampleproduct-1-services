@@ -18,11 +18,11 @@ run:
       echo $(pwd)
             cd sampleproduct-1-services
             echo $(pwd)
-            chmod 775 mvnw
-            ./mvnw -DskipTests=true package
+            chmod 755 gradlew
+            ./gradlew --no-daemon build
             ls
-            ls target
-            cp target/sampleproduct-1-services-1-0.0.1.war ../build-output
+            ls sampleproduct-1-services/build/libs
+            cp sampleproduct-1-services/build/libs/sampleproduct-1-services-1-0.0.1.jar ../build-output
             cp manifest.yml ../build-output
 
             ls ../build-output
