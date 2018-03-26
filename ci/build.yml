@@ -23,7 +23,7 @@ run:
             ./gradlew --no-daemon build
             ls
             ls build/libs
-            cp build/libs/sampleproduct-1-services-1-0.0.1.jar ../build-output
+            cp build/libs/sampleproduct-1-services-0.0.1.jar ../build-output
             cp manifest.yml ../build-output
 
             ls ../build-output
