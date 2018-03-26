@@ -19,4 +19,4 @@ run:
       echo $(pwd)
       chmod 755 gradlew
       ./gradlew --no-daemon build test
-      ls
+      ls build
