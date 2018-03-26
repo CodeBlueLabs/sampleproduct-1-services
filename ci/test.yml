@@ -18,5 +18,5 @@ run:
       cd sampleproduct-1-services
       echo $(pwd)
       chmod 755 gradlew
-      ./gradlew --no-daemon build test jacocoTestReport
+      ./gradlew --no-daemon build test
       ls sampleproduct-1-services/build/libs
