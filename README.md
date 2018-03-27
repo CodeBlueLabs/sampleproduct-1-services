@@ -1,1 +1,1 @@
-# sampleproduct-1-services
+# Sampleproduct-1-services
