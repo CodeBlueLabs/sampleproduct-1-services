@@ -20,3 +20,12 @@ domain:
   name: pcfalm.agileinteractivelab.com
 app:
   url: https://onedigital.cognizant.com/codeblue
+sonar:
+  repository:
+    name: dmasilamani/sonar-quality-gate
+    tag: latest
+  url: http://sonar.cognizantagilelab.com/
+  authtoken: 9ca75f4e0a4afeb535d872ab5ee9dedb9458499e
+  projectkey: PALIMMERSION
+  projectname: Sample Product - 1
+  sources: src/main/java/com/cognizant
