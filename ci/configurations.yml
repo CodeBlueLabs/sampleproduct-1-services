@@ -29,3 +29,5 @@ sonar:
   projectkey: PALIMMERSION
   projectname: Sample Product - 1
   sources: src/main/java/com/cognizant
+project:
+  version: 1.0.0
