@@ -51,11 +51,11 @@ jobs:
     file: sampleproduct-1-services/ci/test.yml
   - put: code-analysis
     params:
-      project_path: codeblue
-      project_key: ((sonar.projectkey))
-      project_name: ((sonar.projectname))
-      project_version: ((project.version))
-      sources: ((sonar.sources))
+       project_path: sampleproduct-1-services
+       project_key: ((sonar.projectkey))
+       project_name: ((sonar.projectname))
+       project_version: ((project.version))
+       sources: ((sonar.sources))
     on_success:
       put: im-notify
       params:
