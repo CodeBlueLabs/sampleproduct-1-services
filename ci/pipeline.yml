@@ -4,7 +4,11 @@ resource_types:
   source:
     repository: ((slack.repository))
     tag: ((slack.tag))
-
+- name: sonar-runner
+  type: docker-image
+  source:
+    repository: ((sonar.repository.name))
+    tag: ((sonar.repository.tag))
 resources:
 - name: sampleproduct-1-services
   type: git
