@@ -8,6 +8,8 @@ apply plugin: 'maven'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'war'
+apply plugin: 'jacoco'
+
 
 
 group = 'cognizant.codebluelabs.palimmersion'
@@ -21,6 +23,7 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+	jcenter()
      maven { url "http://repo1.maven.org/maven2" }
      maven { url "https://repo.spring.io/milestone" }
      maven { url "https://repo.spring.io/snapshot" }
@@ -34,4 +37,13 @@ dependencies {
     testCompile 'junit:junit:4.7'
     testCompile group: 'com.athaydes', name: 'spock-reports', version: '1.2.10'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version:'2.0.0.RELEASE'
+}
+
+jacocoTestReport {
+	group = "Reporting"
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.destination "${buildDir}/reports/coverage"
+	}
 }
