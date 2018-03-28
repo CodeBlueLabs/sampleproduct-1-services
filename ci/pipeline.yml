@@ -52,7 +52,6 @@ jobs:
       project_name: ((sonar.projectname))
       project_version: ((project.version))
       sources: ((sonar.sources))
-  - put:
     on_success:
       put: im-notify
       params:
