@@ -13,12 +13,14 @@ resources:
     branch: master
     username: OneDigitalAdmin
     password: pass1234
+
 - name: code-analysis
   type: sonar-runner
   source:
     host_url: ((sonar.url))
     login: ((sonar.authtoken))
     project_key: ((sonar.projectkey))
+
 - name: im-notify
   type: slack-notification
   source:
