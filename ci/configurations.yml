@@ -27,7 +27,7 @@ sonar:
   url: http://sonar.cognizantagilelab.com/
   authtoken: 9ca75f4e0a4afeb535d872ab5ee9dedb9458499e
   projectkey: PALIMMERSION
-  projectname: Sample Product - 1
+  projectname: SampleProduct-1
   sources: src/main/java/com/cognizant
 project:
   version: 1.0.0
