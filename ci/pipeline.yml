@@ -52,24 +52,23 @@ jobs:
       project_name: ((sonar.projectname))
       project_version: ((project.version))
       sources: ((sonar.sources))
+  - put: force
     on_success:
-      - put: force
-        on_success:
-          put: im-notify
-          params:
-            channel: ((slack.channel))
-            text: |
-              *Code Quality Analysis* completed successfully and report published to Sonar
-              <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
-              <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
-        on_failure:
-          put: im-notify
-          params:
-            channel: ((slack.channel))
-            text: |
-              *Code Quality Analysis* failed with quality violations, check the code quality report for further details
-              <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
-              <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
+      put: im-notify
+      params:
+        channel: ((slack.channel))
+        text: |
+          *Code Quality Analysis* completed successfully and report published to Sonar
+          <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
+          <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
+    on_failure:
+      put: im-notify
+      params:
+        channel: ((slack.channel))
+        text: |
+          *Code Quality Analysis* failed with quality violations, check the code quality report for further details
+          <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
+          <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
 - name: Acceptance Test
   serial: true
   plan:
