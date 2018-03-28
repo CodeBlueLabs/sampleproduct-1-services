@@ -54,7 +54,7 @@ jobs:
        project_path: sampleproduct-1-services
        project_key: ((sonar.projectkey))
        project_name: ((sonar.projectname))
-       project_version: ((project.version))
+       project_version: 1.0.0
        sources: ((sonar.sources))
     on_success:
       put: im-notify
