@@ -14,7 +14,7 @@ pws:
 slack:
   repository: cfcommunity/slack-notification-resource
   tag: latest
-  url: https://hooks.slack.com/services/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 
+  url: https://hooks.slack.com/services/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
   channel: "#buildroom"
 domain:
   name: pcfalm.agileinteractivelab.com
