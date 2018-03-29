@@ -38,8 +38,8 @@ environment:
     username: admin
     password: "@g1l3xp"
     url: https://futureofit.cognizant.com/manager/text
-app:
-  url: http://sampleproduct1-ws.cfapps.io/
-  unittest: 
-    url: http://cognizantagilelab.com/sampleproduct1test
-    name: sampleproduct1test
+ app:
+   url: http://sampleproduct1-ws.cfapps.io/
+ unittest: 
+   url: http://cognizantagilelab.com/sampleproduct1test
+   name: sampleproduct1test
