@@ -1,4 +1,5 @@
 #!/bin/bash
+set ex
 cd PAL-Immersion-Services
-./mvnw clean compile
+./gradlew clean compile
 cd..
