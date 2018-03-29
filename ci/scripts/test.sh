@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 export TERM=${TERM:-dumb}
 cd PAL-Immersion-Services
 chmod 755 gradlew
