@@ -9,4 +9,4 @@ inputs:
 - name: sampleproduct-1-services
 
 run:
-  path: sampleproduct-1-services/ci/scripts/test.sh
+  path: bash
