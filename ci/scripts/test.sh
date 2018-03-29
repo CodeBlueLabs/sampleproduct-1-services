@@ -1,4 +1,5 @@
 #!/bin/bash
+export TERM=${TERM:-dumb}
 cd PAL-Immersion-Services
 chmod 755 gradlew
 ./gradlew --no-daemon build test jacocoTestReport
