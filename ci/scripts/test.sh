@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 export TERM=${TERM:-dumb}
-cd PAL-Immersion-Services
+cd sampleproduct-1-services
 chmod 755 gradlew
 ./gradlew --no-daemon build test jacocoTestReport
 cd build/reports/coverage
