@@ -56,6 +56,10 @@ jobs:
        project_name: ((sonar.projectname))
        project_version: 1.0.0
        sources: ((sonar.sources))
+       managerurl: ((environment.testresult.url))
+       managerusername: ((environment.testresult.username))
+       managerpassword: ((environment.testresult.password))
+       appname: ((app.unittest.name))
     on_success:
       put: im-notify
       params:
