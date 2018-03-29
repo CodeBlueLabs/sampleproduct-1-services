@@ -9,9 +9,9 @@ apt-get update
 apt-get install -y zip
 zip -r sampleproduct1test.war .
 echo sampleproduct1test
-appstatus=$(curl -u $managerusername:$managerpassword "$managerurl/list" | grep "sampleproduct1test")
+appstatus=$(curl -u $managerusername:$managerpassword "$managerurl/list" | grep sampleproduct1test)
 if [ ! -z "$appstatus" ]; then
-	echo "Undeploying sampleproduct1test $managerurl/text/undeploy?path=/$sampleproduct1test .."
+	echo "Undeploying sampleproduct1test $managerurl/text/undeploy?path=/sampleproduct1test .."
 	UNDEPLOY_STATUS=$(curl -v -u $managerusername:$managerpassword "$managerurl/undeploy?path=/sampleproduct1test" | head -n1)
 	
 	if [[ $UNDEPLOY_STATUS == OK* ]]; then
