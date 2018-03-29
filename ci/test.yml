@@ -9,7 +9,7 @@ inputs:
 - name: sampleproduct-1-services
 
 run:
-  path: bash
+  path: sampleproduct-1-services/ci/scripts/test.sh
   args:
     - -exc
     - |
@@ -18,5 +18,5 @@ run:
       cd sampleproduct-1-services
       echo $(pwd)
       chmod 755 gradlew
-      ./gradlew --no-daemon build test
+      ./gradlew --no-daemon build jacocoTestReport
       ls build
