@@ -8,6 +8,7 @@ cd build/reports/coverage
 apt-get update
 apt-get install -y zip
 zip -r $appname.war .
+echo $appname
 appstatus=$(curl --silent -u $managerusername:$managerpassword "$managerurl/list" | grep $appname)
 if [ ! -z "$appstatus" ]; then
 	echo "Undeploying $appname $managerurl/text/undeploy?path=/$appname .."
