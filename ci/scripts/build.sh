@@ -1,4 +1,5 @@
 #!/bin/sh
+set -ex
 cd PAL-Immersion-Services
- ./mvnw package
+./gradlew package
 cd..
