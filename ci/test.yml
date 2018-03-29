@@ -9,14 +9,4 @@ inputs:
 - name: sampleproduct-1-services
 
 run:
-  path: sampleproduct-1-services/ci/scripts/test.sh
-  args:
-    - -exc
-    - |
-      export TERM=${TERM:-dumb}
-      echo $(pwd)
-      cd sampleproduct-1-services
-      echo $(pwd)
-      chmod 755 gradlew
-      ./gradlew --no-daemon build jacocoTestReport
-      ls build
+  path: sampleproduct-1-services/ci/scripts/test.sh 
