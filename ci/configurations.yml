@@ -34,7 +34,7 @@ environment:
     username: admin
     password: "@g1l3xp"
     url: http://cognizantagilelab.com/manager/text 
-   tomcat:
+  tomcat:
     username: admin
     password: "@g1l3xp"
     url: https://futureofit.cognizant.com/manager/text
