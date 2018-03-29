@@ -29,12 +29,12 @@ sonar:
   sources: src/main/java/com/cognizant
 project:
   version: 1.0.0
-environment:
-  testresult:
+ environment:
+   testresult:
     username: admin
     password: "@g1l3xp"
-    url: http://cognizantagilelab.com/manager/text
-  tomcat:
+    url: http://cognizantagilelab.com/manager/text 
+   tomcat:
     username: admin
     password: "@g1l3xp"
     url: https://futureofit.cognizant.com/manager/text
