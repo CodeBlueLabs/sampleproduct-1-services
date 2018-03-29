@@ -18,8 +18,6 @@ slack:
   channel: "#buildroom"
 domain:
   name: pcfalm.agileinteractivelab.com
-app:
-  url: https://onedigital.cognizant.com/codeblue
 sonar:
   repository:
     name: dmasilamani/sonar-quality-gate
@@ -31,3 +29,17 @@ sonar:
   sources: src/main/java/com/cognizant
 project:
   version: 1.0.0
+environment:
+  testresult:
+    username: admin
+    password: "@g1l3xp"
+    url: http://cognizantagilelab.com/manager/text
+  tomcat:
+    username: admin
+    password: "@g1l3xp"
+    url: https://futureofit.cognizant.com/manager/text
+app:
+  url: http://sampleproduct1-ws.cfapps.io/
+  unittest: 
+    url: http://cognizantagilelab.com/sampleproduct1test
+    name: sampleproduct1test
