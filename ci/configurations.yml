@@ -29,8 +29,8 @@ sonar:
   sources: src/main/java/com/cognizant
 project:
   version: 1.0.0
- environment:
-   testresult:
+environment:
+  testresult:
     username: admin
     password: "@g1l3xp"
     url: http://cognizantagilelab.com/manager/text 
@@ -38,8 +38,8 @@ project:
     username: admin
     password: "@g1l3xp"
     url: https://futureofit.cognizant.com/manager/text
- app:
-   url: http://sampleproduct1-ws.cfapps.io/
- unittest: 
-   url: http://cognizantagilelab.com/sampleproduct1test
-   name: sampleproduct1test
+app:
+  url: http://sampleproduct1-ws.cfapps.io/
+  unittest: 
+    url: http://cognizantagilelab.com/sampleproduct1test
+    name: sampleproduct1test
