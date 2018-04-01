@@ -8,9 +8,16 @@ cd build/reports/coverage
 apt-get update
 apt-get install -y zip
 zip -r sampleproduct1test.war .
-echo sampleproduct1test
+echo $params.appname
+echo Application Name
 echo $appname
-echo app.unittest.name
+echo $params.$appname
+echo USERNAME
+echo $managerusername
+echo PASSWORD
+echo $managerpassword
+echo URL
+echo $managerurl
 appstatus=$(curl -u $managerusername:$managerpassword "$managerurl/list" | grep sampleproduct1test)
 if [ ! -z "$appstatus" ]; then
 	echo "Undeploying sampleproduct1test $managerurl/text/undeploy?path=/sampleproduct1test .."
