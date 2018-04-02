@@ -26,6 +26,8 @@ jobs:
           params: 
             channel: ((slack.channel))
             text: |
+                *Unit Test* completed successfully
+                <((app.unittest.url)) | Click here> to view unit test report
                 *Code Quality Analysis* completed successfully and report published to Sonar
                 <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
                 <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report                
@@ -37,37 +39,6 @@ jobs:
           project_version: "1.0.0"
           sources: ((sonar.sources))
         put: code-analysis
-    serial: true
-    
-      - 
-    name: "Unit1 Test"
-    plan: 
-      - 
-        get: sampleproduct-1-services
-        trigger: true
-      - task: unittest
-        file: sampleproduct-1-services/ci/test.yml
-        params: 
-          appname: ((app.unittest.name))
-          managerpassword: ((environment.testresult.password))
-          managerurl: ((environment.testresult.url))
-          managerusername: ((environment.testresult.username))
-      - 
-        on_failure: 
-          params: 
-            channel: ((slack.channel))
-            text: |
-                *Unit Test* completed successfully
-                <((app.unittest.url)) | Click here> to view unit test report
-          put: im-notify
-        on_success: 
-          params: 
-            channel: ((slack.channel))
-            text: |
-                *Unit Test* completed successfully
-                <((app.unittest.url)) | Click here> to view unit test report
-          put: im-notify
-        task: acceptancetest
     serial: true
   - 
     name: "Acceptance Test"
@@ -95,6 +66,8 @@ jobs:
             text: |
                 *Acceptance Test* completed successfully
                 <https://sampleproduct1-ws.cfapps.io/build/spock-reports/index.html| Click here> to view the test report
+                *Unit Test* completed successfully
+                <((app.unittest.url)) | Click here> to view unit test report
           put: im-notify
         task: acceptancetest
     serial: true
