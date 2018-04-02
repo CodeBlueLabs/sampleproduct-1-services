@@ -7,16 +7,16 @@ chmod 755 gradlew
 cd build/spock-reports
 apt-get update
 apt-get install -y zip
-zip -r $appname.war .
-echo $appname
+zip -r $acceptappname.war .
+echo $acceptappname
 echo $managerusername
 echo $managerpassword
 echo $managerurl
-appstatus=$(curl -u $managerusername:$managerpassword "$managerurl/list" | grep $appname)
+appstatus=$(curl -u $managerusername:$managerpassword "$managerurl/list" | grep $acceptappname)
 echo $appstatus
 if [ ! -z "$appstatus" ]; then
-	echo "Undeploying $appname $managerurl/text/undeploy?path=/$appname .."
-	UNDEPLOY_STATUS=$(curl -v -u $managerusername:$managerpassword "$managerurl/undeploy?path=/$appname" | head -n1)
+	echo "Undeploying $acceptappname $managerurl/text/undeploy?path=/$acceptappname .."
+	UNDEPLOY_STATUS=$(curl -v -u $managerusername:$managerpassword "$managerurl/undeploy?path=/$acceptappname" | head -n1)
 	
 	if [[ $UNDEPLOY_STATUS == OK* ]]; then
 		echo "Undeploy Completed, hence deploying unit test results .."
@@ -25,7 +25,7 @@ if [ ! -z "$appstatus" ]; then
 		exit 1
 	fi
 else
-	echo "$appname is not up and running, hence deploying unit test results .."
+	echo "$acceptappname is not up and running, hence deploying unit test results .."
 fi
 echo "Processing"
-curl -v -u $managerusername:$managerpassword -T $appname.war "$managerurl/deploy?path=/$appname"
+curl -v -u $managerusername:$managerpassword -T $acceptappname.war "$managerurl/deploy?path=/$acceptappname"
