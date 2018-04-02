@@ -3,7 +3,7 @@ set -ex
 export TERM=${TERM:-dumb}
 cd sampleproduct-1-services
 chmod 755 gradlew
-./gradlew --no-daemon build test jacocoTestReport
+./gradlew --no-daemon clean build
 cd build/spock-reports
 apt-get update
 apt-get install -y zip
