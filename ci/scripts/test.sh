@@ -7,7 +7,7 @@ chmod 755 gradlew
 cd build/reports/coverage
 apt-get update
 apt-get install -y zip
-zip -r sampleproduct1test.war .
+zip -r $appname.war .
 echo $appname
 echo $managerusername
 echo $managerpassword
