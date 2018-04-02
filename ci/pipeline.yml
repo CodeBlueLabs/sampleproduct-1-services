@@ -6,9 +6,8 @@ jobs:
       - 
         get: sampleproduct-1-services
         trigger: true
-      - 
+      - task: unittest
         file: sampleproduct-1-services/ci/test.yml
-        task: unittest
         params: 
           appname: ((app.unittest.name))
           managerpassword: ((environment.testresult.password))
