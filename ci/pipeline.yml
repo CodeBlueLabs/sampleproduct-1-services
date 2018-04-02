@@ -51,7 +51,7 @@ jobs:
       - 
         file: sampleproduct-1-services/ci/accepttest.yml
         params: 
-          appname: ((app.acceptttest.name))
+          appname: ((app.accepttest.name))
           managerpassword: ((environment.testresult.password))
           managerurl: ((environment.testresult.url))
           managerusername: ((environment.testresult.username))
