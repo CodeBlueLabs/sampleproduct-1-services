@@ -9,6 +9,11 @@ jobs:
       - 
         file: sampleproduct-1-services/ci/test.yml
         task: unittest
+        params: 
+          appname: ((app.unittest.name))
+          managerpassword: ((environment.testresult.password))
+          managerurl: ((environment.testresult.url))
+          managerusername: ((environment.testresult.username))
       - 
         on_failure: 
           params: 
@@ -26,11 +31,7 @@ jobs:
                 <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
                 <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
           put: im-notify
-        params: 
-          appname: ((app.unittest.name))
-          managerpassword: ((environment.testresult.password))
-          managerurl: ((environment.testresult.url))
-          managerusername: ((environment.testresult.username))
+        params:
           project_key: ((sonar.projectkey))
           project_name: ((sonar.projectname))
           project_path: sampleproduct-1-services
