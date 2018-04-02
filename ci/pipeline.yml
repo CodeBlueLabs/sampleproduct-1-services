@@ -58,9 +58,7 @@ jobs:
         on_failure: 
           params: 
             channel: ((slack.channel))
-            text: "*Acceptance Test* failed with test case failures, check the build log for details\n"
-                  *Unit Test* completed successfully
-                  <((app.unittest.url)) | Click here> to view unit test report 
+            text: "*Acceptance Test* failed with test case failures, check the build log for details\n"                  
           put: im-notify
         on_success: 
           params: 
