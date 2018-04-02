@@ -49,7 +49,7 @@ jobs:
           - "Unit Test"
         trigger: true
       - 
-        file: sampleproduct-1-services/ci/test.yml
+        file: sampleproduct-1-services/ci/accepttest.yml
         params: 
           appname: ((app.acceptttest.name))
           managerpassword: ((environment.testresult.password))
