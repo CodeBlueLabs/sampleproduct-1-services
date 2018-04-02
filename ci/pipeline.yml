@@ -26,6 +26,8 @@ jobs:
           params: 
             channel: ((slack.channel))
             text: |
+                *Unit Test* completed successfully
+                <((app.unittest.url)) | Click here> to view unit test report
                 *Code Quality Analysis* completed successfully and report published to Sonar
                 <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
                 <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report                
