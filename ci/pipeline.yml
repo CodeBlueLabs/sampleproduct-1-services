@@ -51,7 +51,7 @@ jobs:
       - 
         file: sampleproduct-1-services/ci/test.yml
         params: 
-          appname: ((app.unittest.name))
+          appname: ((app.acceptttest.name))
           managerpassword: ((environment.testresult.password))
           managerurl: ((environment.testresult.url))
           managerusername: ((environment.testresult.username))
@@ -66,8 +66,6 @@ jobs:
             text: |
                 *Acceptance Test* completed successfully
                 <https://sampleproduct1-ws.cfapps.io/build/spock-reports/index.html| Click here> to view the test report
-                *Unit Test* completed successfully
-                <((app.unittest.url)) | Click here> to view unit test report
           put: im-notify
         task: acceptancetest
     serial: true
