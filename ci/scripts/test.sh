@@ -9,8 +9,6 @@ apt-get update
 apt-get install -y zip
 zip -r $appname.war .
 echo $appname
-echo $managerusername
-echo $managerpassword
 echo $managerurl
 appstatus=$(curl -u $managerusername:$managerpassword "$managerurl/list" | grep $appname)
 echo $appstatus
