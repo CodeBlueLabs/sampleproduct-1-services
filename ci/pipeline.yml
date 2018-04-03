@@ -1,141 +1,128 @@
---- 
-jobs: 
-  - 
-    name: "Unit Test"
-    plan: 
-      - 
-        get: sampleproduct-1-services
-        trigger: true
-      - task: unittest
-        file: sampleproduct-1-services/ci/test.yml
-        params: 
-          appname: ((app.unittest.name))
-          managerpassword: ((environment.testresult.password))
-          managerurl: ((environment.testresult.url))
-          managerusername: ((environment.testresult.username))
-      - 
-        on_failure: 
-          params: 
-            channel: ((slack.channel))
-            text: |
-                *Code Quality Analysis* failed with quality violations, check the code quality report for further details
-                <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
-                <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
-          put: im-notify
-        on_success: 
-          params: 
-            channel: ((slack.channel))
-            text: |
-                *Code Quality Analysis* completed successfully and report published to Sonar
-                <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
-                <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
-                *Unit Test* completed successfully
-                <((app.unittest.url)) | Click here> to view unit test report
-          put: im-notify
-        params:
-          project_key: ((sonar.projectkey))
-          project_name: ((sonar.projectname))
-          project_path: sampleproduct-1-services
-          project_version: "1.0.0"
-          sources: ((sonar.sources))
-        put: code-analysis
-    serial: true
-  - 
-    name: "Acceptance Test"
-    plan: 
-      - 
-        get: sampleproduct-1-services
-        passed: 
-          - "Unit Test"
-        trigger: true
-      - 
-        file: sampleproduct-1-services/ci/accepttest.yml
-        params: 
-          acceptappname: ((app.accepttest.name))
-          managerpassword: ((environment.testresult.password))
-          managerurl: ((environment.testresult.url))
-          managerusername: ((environment.testresult.username))
-        on_failure: 
-          params: 
-            channel: ((slack.channel))
-            text: "*Acceptance Test* failed with test case failures, check the build log for details\n"                  
-          put: im-notify
-        on_success: 
-          params: 
-            channel: ((slack.channel))
-            text: |
-                *Acceptance Test* completed successfully
-                <https://sampleproduct1-ws.cfapps.io/build/spock-reports/index.html| Click here> to view the test report
-          put: im-notify
-        task: acceptancetest
-    serial: true
-  - 
-    name: "Build and Deploy"
-    plan: 
-      - 
-        get: sampleproduct-1-services
-        passed: 
-          - "Acceptance Test"
-        trigger: true
-      - 
-        file: sampleproduct-1-services/ci/build.yml
-        task: buildanddeploy
-      - 
-        on_failure: 
-          params: 
-            channel: ((slack.channel))
-            text: "*Build* failed, check the build log for details\n"
-          put: im-notify
-        on_success: 
-          params: 
-            channel: ((slack.channel))
-            text: "*Build* completed successfully\n"
-          put: im-notify
-        params: 
-          manifest: sampleproduct-1-services/manifest.yml
-        put: deployapp
-    serial: true
-resource_types: 
-  - 
-    name: slack-notification
-    source: 
-      repository: ((slack.repository))
-      tag: ((slack.tag))
-    type: docker-image
-  - 
-    name: sonar-runner
-    source: 
-      repository: ((sonar.repository.name))
-      tag: ((sonar.repository.tag))
-    type: docker-image
-resources: 
-  - 
-    name: sampleproduct-1-services
-    source: 
-      branch: master
-      password: pass1234
-      uri: "https://github.com/CodeBlueLabs/sampleproduct-1-services.git"
-      username: OneDigitalAdmin
-    type: git
-  - 
-    name: code-analysis
-    source: 
-      host_url: ((sonar.url))
-      login: ((sonar.authtoken))
+jobs:
+- name: Unit Test
+  plan:
+  - get: sampleproduct-1-services
+    trigger: true
+  - task: unittest
+    file: sampleproduct-1-services/ci/test.yml
+    params:
+      appname: ((app.unittest.name))
+      managerpassword: ((environment.testresult.password))
+      managerurl: ((environment.testresult.url))
+      managerusername: ((environment.testresult.username))
+  - on_failure:
+      params:
+        channel: ((slack.channel))
+        text: |
+          *Code Quality Analysis* failed with quality violations, check the code quality report for further details
+          <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
+          <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
+      put: im-notify
+    on_success:
+      params:
+        channel: ((slack.channel))
+        text: |
+          *Code Quality Analysis* completed successfully and report published to Sonar
+          <http://((domain.name))/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Click here> to view the build details
+          <((sonar.url))/overview?id=((sonar.projectkey))| Click here> to view the code quality report
+          *Unit Test* completed successfully
+          <((app.unittest.url)) | Click here> to view unit test report
+      put: im-notify
+    params:
       project_key: ((sonar.projectkey))
-    type: sonar-runner
-  - 
-    name: im-notify
-    source: 
-      url: ((slack.url))
-    type: slack-notification
-  - 
-    name: deployapp
-    source: 
-      api: "https://api.run.pivotal.io"
-      organization: Autoloan
-      password: Pass123$
-      skip_cert_check: false
-      space: PALImmersion
-      username: onedigitaladmin@cognizant.com
-    type: cf
+      project_name: ((sonar.projectname))
+      project_path: sampleproduct-1-services
+      project_version: 1.0.0
+      sources: ((sonar.sources))
+    put: code-analysis
+  serial: true
+- name: Acceptance Test
+  plan:
+  - get: sampleproduct-1-services
+    passed:
+    - Unit Test
+    trigger: true
+  - task: acceptancetest
+    file: sampleproduct-1-services/ci/accepttest.yml
+    params:
+      acceptappname: ((app.accepttest.name))
+      managerpassword: ((environment.testresult.password))
+      managerurl: ((environment.testresult.url))
+      managerusername: ((environment.testresult.username))
+    on_failure:
+      params:
+        channel: ((slack.channel))
+        text: |
+          *Acceptance Test* failed with test case failures, check the build log for details
+      put: im-notify
+    on_success:
+      params:
+        channel: ((slack.channel))
+        text: |
+          *Acceptance Test* completed successfully
+          <https://sampleproduct1-ws.cfapps.io/build/spock-reports/index.html| Click here> to view the test report
+      put: im-notify
+    task: acceptancetest
+  serial: true
+- name: Build and Deploy
+  plan:
+  - get: sampleproduct-1-services
+    passed:
+    - Acceptance Test
+    trigger: true
+  - file: sampleproduct-1-services/ci/build.yml
+    task: buildanddeploy
+  - on_failure:
+      params:
+        channel: ((slack.channel))
+        text: |
+          *Build* failed, check the build log for details
+      put: im-notify
+    on_success:
+      params:
+        channel: ((slack.channel))
+        text: |
+          *Build* completed successfully
+      put: im-notify
+    params:
+      manifest: sampleproduct-1-services/manifest.yml
+    put: deployapp
+  serial: true
+resource_types:
+- name: slack-notification
+  source:
+    repository: ((slack.repository))
+    tag: ((slack.tag))
+  type: docker-image
+- name: sonar-runner
+  source:
+    repository: ((sonar.repository.name))
+    tag: ((sonar.repository.tag))
+  type: docker-image
+resources:
+- name: sampleproduct-1-services
+  source:
+    branch: master
+    password: pass1234
+    uri: https://github.com/CodeBlueLabs/sampleproduct-1-services.git
+    username: OneDigitalAdmin
+  type: git
+- name: code-analysis
+  source:
+    host_url: ((sonar.url))
+    login: ((sonar.authtoken))
+    project_key: ((sonar.projectkey))
+  type: sonar-runner
+- name: im-notify
+  source:
+    url: ((slack.url))
+  type: slack-notification
+- name: deployapp
+  source:
+    api: https://api.run.pivotal.io
+    organization: Autoloan
+    password: Pass123$
+    skip_cert_check: false
+    space: PALImmersion
+    username: onedigitaladmin@cognizant.com
+  type: cf
