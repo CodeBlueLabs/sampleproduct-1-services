@@ -25,7 +25,7 @@ sonar:
   url: http://sonar.cognizantagilelab.com/
   authtoken: 9ca75f4e0a4afeb535d872ab5ee9dedb9458499e
   projectkey: PALIMMERSION
-  projectname: SampleProduct-1
+  projectname: PalimmersionService
   sources: src/main/java/com/cognizant
 project:
   version: 1.0.0
@@ -41,8 +41,8 @@ environment:
 app:
   url: http://sampleproduct1-ws.cfapps.io/
   unittest: 
-    url: http://cognizantagilelab.com/sampleproduct1test
-    name: sampleproduct1test
+    url: http://cognizantagilelab.com/PalimmersionServiceTest
+    name: PalimmersionServiceTest
   accepttest: 
-    url: http://cognizantagilelab.com/sampleproduct1accepttest
-    name: sampleproduct1accepttest
+    url: http://cognizantagilelab.com/PalimmersionServiceAcceptTest
+    name: PalimmersionServiceAcceptTest
