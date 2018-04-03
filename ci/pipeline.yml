@@ -39,8 +39,7 @@ jobs:
 - name: Acceptance Test
   plan:
   - get: sampleproduct-1-services
-    passed:
-    - Unit Test
+    passed: ['Unit Test']
     trigger: true
   - task: acceptancetest
     file: sampleproduct-1-services/ci/accepttest.yml
