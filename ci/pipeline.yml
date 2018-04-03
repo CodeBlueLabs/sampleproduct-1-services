@@ -59,7 +59,7 @@ jobs:
         channel: ((slack.channel))
         text: |
           *Acceptance Test* completed successfully
-          <https://sampleproduct1-ws.cfapps.io/build/spock-reports/index.html| Click here> to view the test report
+           <((app.accepttest.url))| Click here> to view the test report
       put: im-notify
     task: acceptancetest
   serial: true
